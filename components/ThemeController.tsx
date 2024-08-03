@@ -1,12 +1,41 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 
 type Props = {};
 
+interface Themes {
+  theme: string;
+  localTheme: string;
+}
+
 function ThemeController({}: Props) {
+  const [theme, setTheme] = useState<string>(() => {
+    return localStorage.getItem("theme") || "luxury";
+  });
+
+  const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setTheme("cupcake");
+    } else {
+      setTheme("luxury");
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme") || "luxury";
+    document.querySelector("html")?.setAttribute("data-theme", localTheme);
+  }, [theme]);
   return (
     <label className="swap swap-rotate btn btn-ghost btn-circle">
       {/* this hidden checkbox controls the state */}
-      <input type="checkbox" className="theme-controller" value="synthwave" />
+      <input
+        type="checkbox"
+        className="theme-controller"
+        value={theme}
+        onChange={handleThemeChange}
+        checked={theme === "luxury" ? false : true}
+      />
 
       {/* sun icon */}
       <svg
