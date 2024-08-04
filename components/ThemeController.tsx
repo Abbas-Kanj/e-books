@@ -9,23 +9,26 @@ interface Themes {
 }
 
 function ThemeController({}: Props) {
-  const [theme, setTheme] = useState<string>(() => {
-    return localStorage.getItem("theme") || "luxury";
-  });
+  const [theme, setTheme] = useState<string>("luxury");
+
+  useEffect(() => {
+    // Access localStorage only on the client side
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
+  }, []);
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setTheme("cupcake");
-    } else {
-      setTheme("luxury");
-    }
+    const newTheme = e.target.checked ? "cupcake" : "luxury";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
   };
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme") || "luxury";
-    document.querySelector("html")?.setAttribute("data-theme", localTheme);
+    document.querySelector("html")?.setAttribute("data-theme", theme);
   }, [theme]);
+
   return (
     <label className="swap swap-rotate btn btn-ghost btn-circle">
       {/* this hidden checkbox controls the state */}
