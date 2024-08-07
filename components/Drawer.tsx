@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Link from "next/link";
-import Image from "next/image";
 import {
   MdDashboard,
   MdBookmark,
@@ -20,6 +19,7 @@ type Props = {
 
 function Drawer({ children }: Props) {
   const pathname = usePathname();
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -91,15 +91,28 @@ function Drawer({ children }: Props) {
               <MdSettings className="size-8" />
             </Link>
           </div>
-          <div className="flex flex-col gap-10 items-center">
-            {/* Avatar Online */}
-            <div className="avatar online">
-              <div className="w-14 rounded-full">
+          {/* Online friends*/}
+          <div className="avatar-group flex-col -space-y-6 rtl:space-y-reverse">
+            <div className="avatar">
+              <div className="w-12">
                 <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
               </div>
             </div>
-            {/* logout */}
-            <MdLogout className="size-8 cursor-pointer hover:opacity-40" />
+            <div className="avatar">
+              <div className="w-12">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              </div>
+            </div>
+            <div className="avatar">
+              <div className="w-12">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              </div>
+            </div>
+            <div className="avatar">
+              <div className="w-12">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
