@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: "images-na.ssl-images-amazon.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "**",
+      },
     ],
   },
 };
