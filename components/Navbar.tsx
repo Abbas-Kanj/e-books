@@ -1,9 +1,27 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import ThemeController from "./ThemeController";
+import Image from "next/image";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { FaGoogle } from "react-icons/fa";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
+  const { data: session } = useSession();
+
+  const profileImage = session?.user?.image;
+
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    const setAuthProviders = async () => {
+      const res = await getProviders();
+      setProviders(res);
+    };
+    setAuthProviders();
+  }, []);
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -31,7 +49,7 @@ const Navbar = (props: Props) => {
           </svg>
         </label>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end gap-1">
         <ThemeController />
         <button className="btn btn-ghost btn-circle">
           <div className="indicator">
@@ -85,29 +103,60 @@ const Navbar = (props: Props) => {
             </div>
           </div>
         </div>
-        {/* online friends */}
-        <div className="avatar-group -space-x-6 rtl:space-x-reverse">
-          <div className="avatar">
-            <div className="w-12">
-              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+        {/* Signed In */}
+        {session && (
+          <>
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <Image
+                    alt="User-Image"
+                    width={40}
+                    height={40}
+                    src={
+                      profileImage ||
+                      "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    }
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <a className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </a>
+                </li>
+                <li>
+                  <a>Settings</a>
+                </li>
+                <li>
+                  <a onClick={() => signOut()}>Logout</a>
+                </li>
+              </ul>
             </div>
-          </div>
-          <div className="avatar">
-            <div className="w-12">
-              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-            </div>
-          </div>
-          <div className="avatar">
-            <div className="w-12">
-              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-            </div>
-          </div>
-          <div className="avatar">
-            <div className="w-12">
-              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-            </div>
-          </div>
-        </div>
+          </>
+        )}
+        {/* Signed Out */}
+        {!session &&
+          providers &&
+          Object.values(providers).map((provider: any, index) => (
+            <button
+              onClick={() => signIn(provider.id)}
+              key={index}
+              className="flex items-center bg-base-300 hover:base-200 hover:text-white rounded-md px-3 py-2"
+            >
+              <FaGoogle className="size-5 mr-2" />
+              <span>Login or Register</span>
+            </button>
+          ))}
       </div>
     </div>
   );
