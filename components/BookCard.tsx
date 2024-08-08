@@ -1,13 +1,9 @@
 "use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
-import {
-  MdBookmarkAdd,
-  MdBookmarkAdded,
-  MdBookmarkBorder,
-  MdBookmarkRemove,
-} from "react-icons/md";
+import BookmarkButton from "./BookmarkButton";
 
 type Props = {
   book: Book;
@@ -15,14 +11,17 @@ type Props = {
 
 const BookCard = ({ book }: Props) => {
   const router = useRouter();
+
   const { imageUrl, title, _id } = book;
+
   return (
     <>
       <div className="flex flex-col gap-2 relative text-start">
-        <MdBookmarkAdd className="absolute top-0 left-0 size-7 z-20 bg-base-100 rounded-btn p-1 cursor-pointer hover:opacity-60" />
+        <BookmarkButton book={book} />
         <Image
           src={imageUrl}
           sizes="100vw"
+          priority={true}
           height={0}
           width={0}
           alt="Book-Cover"
