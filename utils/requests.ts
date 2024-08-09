@@ -20,4 +20,23 @@ async function fetchBooks() {
   }
 }
 
-export { fetchBooks };
+async function fetchBookById(id: any) {
+  try {
+    // handle the case where the domain is not available yet
+    if (!apiDomain) {
+      return [];
+    }
+
+    const res = await fetch(`${apiDomain}/books/${id}`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return res.json();
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+export { fetchBooks, fetchBookById };
