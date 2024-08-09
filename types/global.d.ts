@@ -4,8 +4,12 @@ interface Book {
   author: string;
   isbn: string;
   price: number;
+  isFree: boolean;
   category: string;
-  description: string;
+  publisherDescription: string;
+  detailedSummary: string;
+  length: string;
+  awards: object;
   publishedDate: Date;
   imageUrl: string;
   audioUrl: string;
