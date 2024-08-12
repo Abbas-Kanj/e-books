@@ -13,10 +13,9 @@ export const GET = async (req, { params }) => {
       select: "username image -_id", // exclude the id
     });
 
-    if (reviews.length === 0)
-      return new Response("No reviews found", { status: 404 });
+    if (reviews.length === 0) return [];
 
-    return new Response(JSON.stringify({ reviews }), { status: 200 });
+    return new Response(JSON.stringify(reviews), { status: 200 });
   } catch (error) {
     console.error(error);
   }
