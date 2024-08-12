@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
 const NotificationSchema = new Schema(
   {
@@ -48,6 +48,12 @@ const UserSchema = new Schema(
       },
     ],
     notifications: [NotificationSchema],
+    reviews: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Book.reviews",
+      },
+    ],
     role: {
       type: String,
       enum: ["user", "admin", "support"],
