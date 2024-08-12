@@ -1,4 +1,26 @@
 import { Schema, model, models } from "mongoose";
+import User from "./User";
+
+const ReviewSchema = new Schema(
+  {
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: User,
+      required: [true, "UserId is required"],
+    },
+    rating: {
+      type: Number,
+      min: 1,
+      max: 5,
+      required: [true, "Rating is required"],
+    },
+    text: {
+      type: String,
+      required: [true, "Text is required"],
+    },
+  },
+  { timestamps: true }
+);
 
 const BookSchema = new Schema(
   {
@@ -18,10 +40,11 @@ const BookSchema = new Schema(
       type: Number,
       required: [true, "Price is required"],
     },
-    category: {
-      type: String,
+    genre: {
+      type: Array,
       required: [true, "Category is required"],
     },
+    reviews: [ReviewSchema],
     description: {
       type: String,
       required: [true, "Description is required"],
@@ -32,11 +55,9 @@ const BookSchema = new Schema(
     },
     imageUrl: {
       type: String,
-      required: [true, "Image is required"],
     },
     audioUrl: {
       type: String,
-      required: [false, "Audio is required"],
     },
   },
   {
