@@ -25,7 +25,7 @@ const ShareButtons = ({ book }: Props) => {
             <FacebookShareButton
               url={shareUrl}
               quote={book.title}
-              hashtag={`#${book.category.replace(/\s/g, "")}`}
+              hashtag={`#${book.genre}`}
               className="hover:opacity-45"
             >
               <FacebookIcon size={40} round={true} />
@@ -34,7 +34,7 @@ const ShareButtons = ({ book }: Props) => {
             <TwitterShareButton
               url={shareUrl}
               title={book.title}
-              hashtags={[`${book.category.replace(/\s/g, "")}`]}
+              hashtags={[`${book.genre}`]}
               className="hover:opacity-45"
             >
               <TwitterIcon size={40} round={true} />
