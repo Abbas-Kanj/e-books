@@ -20,7 +20,7 @@ function ThemeController({}: Props) {
   }, []);
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTheme = e.target.checked ? "cupcake" : "luxury";
+    const newTheme = e.target.checked ? "autumn" : "luxury";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
   };
