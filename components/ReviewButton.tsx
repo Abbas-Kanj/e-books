@@ -1,11 +1,47 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import RateButton from "./RateButton";
+import { apiDomain } from "@/utils/requests";
+import { toast } from "react-toastify";
 
-type Props = {};
+type Props = {
+  book: Book;
+};
 
-const ReviewButton = (props: Props) => {
+const ReviewButton = ({ book }: Props) => {
   const myModelRef = useRef<HTMLDialogElement>(null);
+
+  const [text, setText] = useState("");
+  const [rating, setRating] = useState(1);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (text === "") {
+      toast.error("Review Cannot be empty");
+      return;
+    }
+    try {
+      const res = await fetch(`${apiDomain}/reviews`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          text: text,
+          rating: rating,
+          bookId: book._id,
+        }),
+      });
+      const { message, status } = await res.json();
+
+      if (status === 201) {
+        toast.success(message);
+        myModelRef.current?.close();
+      }
+    } catch (error) {
+      toast.error("Error adding review");
+    }
+  };
 
   return (
     <>
@@ -23,13 +59,15 @@ const ReviewButton = (props: Props) => {
             </button>
           </form>
           <h3 className="font-bold text-lg mb-4">Write a Review</h3>
-          <form action="" className="flex flex-col">
+          <form onSubmit={handleSubmit} className="flex flex-col">
             <div className="flex flex-col gap-4">
               <textarea
-                placeholder="Bio"
+                placeholder="I recommend this book!"
                 className="textarea textarea-bordered textarea-md min-h-44 max-h-44 w-full"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
               ></textarea>
-              <RateButton />
+              <RateButton setRating={setRating} />
             </div>
             <button type="submit" className="btn self-end">
               Submit
