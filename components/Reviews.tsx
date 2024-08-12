@@ -1,7 +1,9 @@
 "use client";
 import { apiDomain } from "@/utils/requests";
 import { useParams } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import ReviewCard from "./ReviewCard";
+import Spinner from "./Spinner";
 
 type Props = {
   book: Book;
@@ -9,6 +11,9 @@ type Props = {
 
 const Reviews = ({ book }: Props) => {
   const { id } = useParams();
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchBookReviews = async (id) => {
       try {
@@ -19,16 +24,31 @@ const Reviews = ({ book }: Props) => {
         const res = await fetch(`${apiDomain}/reviews/${id}`);
         if (res.ok) {
           const data = await res.json();
-          console.log(data);
+          setReviews(data.reviews);
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchBookReviews(id);
-  }, [book, id]);
+  }, [id, book]);
 
-  return <div>Reviews</div>;
+  return (
+    <section className="container flex flex-col p-4">
+      <>
+        {loading && <Spinner loading={loading} />}
+        {!loading && reviews?.length === 0 ? (
+          <h1 className="text-xl text-center">No reviews yet...</h1>
+        ) : (
+          reviews.map((review, index: React.Key) => (
+            <ReviewCard key={index} review={review} />
+          ))
+        )}
+      </>
+    </section>
+  );
 };
 
 export default Reviews;
