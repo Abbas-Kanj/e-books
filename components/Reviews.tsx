@@ -36,15 +36,18 @@ const Reviews = ({ book }: Props) => {
   }, [id, book]);
 
   return (
-    <section className="container flex flex-col p-4">
+    <section className="container flex flex-col p-4 mt-4">
       <>
         {loading && <Spinner loading={loading} />}
         {!loading && reviews?.length === 0 ? (
           <h1 className="text-xl text-center">No reviews yet...</h1>
         ) : (
-          reviews.map((review, index: React.Key) => (
-            <ReviewCard key={index} review={review} />
-          ))
+          <>
+            <h1 className="text-xl font-semibold mb-4">Community Reviews</h1>
+            {reviews.map((review, index: React.Key) => (
+              <ReviewCard key={index} review={review} />
+            ))}
+          </>
         )}
       </>
     </section>
