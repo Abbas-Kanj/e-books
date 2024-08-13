@@ -1,7 +1,35 @@
 import connectDB from "@/config/database";
-import Book from "@/models/Book";
 import User from "@/models/User";
 import { getSessionUser } from "@/utils/getSessionUser";
+
+// GET /api/bookmarks/:id
+export const GET = async () => {
+  try {
+    await connectDB();
+
+    const sessionUser = await getSessionUser();
+
+    if (!sessionUser || !sessionUser.userId) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+
+    const { userId } = sessionUser;
+
+    // Find user in database
+    const bookmarks = await User.findOne({ _id: userId }).select(
+      "bookmarks -_id"
+    );
+
+    if (bookmarks.length === 0) {
+      return [];
+    }
+
+    return new Response(JSON.stringify({ bookmarks }), { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return new Response("Something went wrong", { status: 500 });
+  }
+};
 
 // POST /api/bookmarks
 export const POST = async (req: {
