@@ -1,19 +1,28 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import RateButton from "./RateButton";
 import { apiDomain } from "@/utils/requests";
 import { toast } from "react-toastify";
+import { useParams } from "next/navigation";
+import { getProviders, signIn, useSession } from "next-auth/react";
+import { FaGoogle } from "react-icons/fa";
 
-type Props = {
-  book: Book;
-};
+type Props = {};
 
-const ReviewButton = ({ book }: Props) => {
-  const myModelRef = useRef<HTMLDialogElement>(null);
+const ReviewButton = (props: Props) => {
+  const { id } = useParams();
+  const { data: session } = useSession();
 
+  // Refs
+  const myReviewModelRef = useRef<HTMLDialogElement>(null);
+  const myRegisterModelRef = useRef<HTMLDialogElement>(null);
+
+  // States
   const [text, setText] = useState("");
   const [rating, setRating] = useState(1);
+  const [providers, setProviders] = useState(null);
 
+  // Handle review submit function
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (text === "") {
@@ -29,29 +38,62 @@ const ReviewButton = ({ book }: Props) => {
         body: JSON.stringify({
           text: text,
           rating: rating,
-          bookId: book._id,
+          bookId: id,
         }),
       });
       const { message, status } = await res.json();
 
       if (status === 201) {
         toast.success(message);
-        myModelRef.current?.close();
+        myReviewModelRef.current?.close();
       }
     } catch (error) {
       toast.error("Error adding review");
     }
   };
 
+  // Handle user signin
+  useEffect(() => {
+    const setAuthProviders = async () => {
+      const res = await getProviders();
+      setProviders(res);
+    };
+    setAuthProviders();
+  }, []);
+
   return (
     <>
       <button
         className="btn btn-accent"
-        onClick={() => myModelRef.current?.showModal()}
+        onClick={() =>
+          session == null
+            ? myRegisterModelRef.current?.showModal()
+            : myReviewModelRef.current?.showModal()
+        }
       >
         Write a Review
       </button>
-      <dialog id="my_modal_3" ref={myModelRef} className="modal">
+      <dialog id="my_modal_2" ref={myRegisterModelRef} className="modal">
+        <div className="modal-box flex flex-col items-center gap-10 w-fit p-10">
+          <h3 className="text-center text-lg">Login to write a review 😃</h3>
+          {!session &&
+            providers &&
+            Object.values(providers).map((provider: any, index) => (
+              <button
+                onClick={() => signIn(provider.id)}
+                key={index}
+                className="flex items-center bg-base-300 hover:base-200 hover:text-white rounded-md px-3 py-2"
+              >
+                <FaGoogle className="size-5 mr-2" />
+                <span>Login or Register</span>
+              </button>
+            ))}
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+      <dialog id="my_modal_3" ref={myReviewModelRef} className="modal">
         <div className="modal-box">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
