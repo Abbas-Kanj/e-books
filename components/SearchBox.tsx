@@ -7,6 +7,34 @@ const SearchBox = () => {
   // States
   const [searchField, setSearchField] = useState("");
 
+  useEffect(() => {
+    const debounceTimer = setTimeout(async () => {
+      if (searchField === "") {
+        toast.warning("Search field cannot be empty!");
+        return;
+      }
+      try {
+        const res = await fetch(`${apiDomain}/search`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            searchedData: searchField.split(" "),
+          }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          console.log(data);
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("Cannot search at this time");
+      }
+    }, 3000);
+    return () => clearTimeout(debounceTimer);
+  }, [searchField]);
+
   return (
     <label className="input input-bordered flex items-center gap-2">
       <input
