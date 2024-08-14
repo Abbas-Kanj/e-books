@@ -10,7 +10,15 @@ export const GET = async (req, { params }) => {
 
     const averageRating = await Book.findById(id).select("averageRating -_id");
 
-    return new Response(JSON.stringify({ averageRating }), { status: 200 });
+    const book = await Book.findById(id).select("reviews.rating");
+
+    const ratings = book.reviews.map(
+      (review: { rating: number }) => review.rating
+    );
+
+    return new Response(JSON.stringify({ averageRating, ratings }), {
+      status: 200,
+    });
   } catch (error) {
     console.error(error);
     return new Response("Something went wrong", { status: 500 });
