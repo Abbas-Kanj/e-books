@@ -28,15 +28,23 @@ const MoreFromAuthour = ({ book }: Props) => {
   }, [author]);
 
   return (
-    <section className="container flex flex-col gap-3 pl-4 min-h-56">
-      <h1 className="text-xl font-semibold">More from the Author</h1>
+    <section className="container flex flex-col gap-3 p-4 min-h-56">
+      <h1 className="text-2xl font-semibold mb-4">
+        More from <span className="italic font-light">{author}</span>
+      </h1>
       {loading && <Spinner loading={loading} />}
       {!loading && booksByAuthor.length === 0 ? (
         <h2 className="text-center">No books available at this time</h2>
       ) : (
-        <div className="flex">
-          {booksByAuthor.map((book: Book) => (
-            <BookCard key={book._id} book={book} />
+        <div className="flex justify-between px-2 w-full">
+          {booksByAuthor.map((book: Book, index: number) => (
+            <div key={book._id} className="flex items-center">
+              <BookCard book={book} />
+              {/* Rendering seperators */}
+              {index < booksByAuthor.length - 1 && (
+                <div className="rounded-full w-1 h-56 self-center bg-current ml-8"></div>
+              )}
+            </div>
           ))}
         </div>
       )}
