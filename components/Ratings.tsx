@@ -11,31 +11,31 @@ const Ratings = (props: Props) => {
           disabled
           type="radio"
           name="rating-5"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-5"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-5"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-5"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-5"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
           defaultChecked
         />
       </div>
@@ -45,32 +45,32 @@ const Ratings = (props: Props) => {
           disabled
           type="radio"
           name="rating-4"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-4"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-4"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-4"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
           defaultChecked
         />
         <input
           disabled
           type="radio"
           name="rating-4"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
       </div>
       {/* 3 stars */}
@@ -79,32 +79,32 @@ const Ratings = (props: Props) => {
           disabled
           type="radio"
           name="rating-3"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-3"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-3"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
           defaultChecked
         />
         <input
           disabled
           type="radio"
           name="rating-3"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-3"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
       </div>
       {/* 2 stars */}
@@ -113,32 +113,32 @@ const Ratings = (props: Props) => {
           disabled
           type="radio"
           name="rating-2"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-2"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
           defaultChecked
         />
         <input
           disabled
           type="radio"
           name="rating-2"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-2"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-2"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
       </div>
       {/* 1 star */}
@@ -147,32 +147,32 @@ const Ratings = (props: Props) => {
           disabled
           type="radio"
           name="rating-1"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
           defaultChecked
         />
         <input
           disabled
           type="radio"
           name="rating-1"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-1"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-1"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
         <input
           disabled
           type="radio"
           name="rating-1"
-          className="mask mask-star-2 bg-yellow-400"
+          className="mask mask-star-2 bg-yellow-400 cursor-default"
         />
       </div>
     </div>
