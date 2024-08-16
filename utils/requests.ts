@@ -80,4 +80,40 @@ async function fetchBooksByGenre(genre: string) {
   }
 }
 
-export { fetchBooks, fetchBookById, fetchBooksByAuthor, fetchBooksByGenre };
+// Add a book review
+async function addBookReview(
+  text: string,
+  rating: number,
+  bookId: string | string[]
+) {
+  try {
+    if (!apiDomain) {
+      return null;
+    }
+
+    const res = await fetch(`${apiDomain}/reviews`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: text,
+        rating: rating,
+        bookId: bookId,
+      }),
+    });
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export {
+  fetchBooks,
+  fetchBookById,
+  fetchBooksByAuthor,
+  fetchBooksByGenre,
+  addBookReview,
+};

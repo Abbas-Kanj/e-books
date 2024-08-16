@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import RateButton from "./RateButton";
-import { apiDomain } from "@/utils/requests";
+import { addBookReview, apiDomain } from "@/utils/requests";
 import { toast } from "react-toastify";
 import { useParams } from "next/navigation";
 import { getProviders, useSession } from "next-auth/react";
@@ -27,25 +27,12 @@ const ReviewButton = () => {
       toast.error("Review Cannot be empty");
       return;
     }
-    try {
-      const res = await fetch(`${apiDomain}/reviews`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          text: text,
-          rating: rating,
-          bookId: id,
-        }),
-      });
-      const { message, status } = await res.json();
+    const res = await addBookReview(text, rating, id);
 
-      if (status === 201) {
-        toast.success(message);
-        myReviewModelRef.current?.close();
-      }
-    } catch (error) {
+    if (res.status === 201) {
+      toast.success(res.message);
+      myReviewModelRef.current?.close();
+    } else if (res === null) {
       toast.error("Error adding review");
     }
   };
