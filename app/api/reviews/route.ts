@@ -3,8 +3,10 @@ import Book from "@/models/Book";
 import User from "@/models/User";
 import { getSessionUser } from "@/utils/getSessionUser";
 
-// POST /api/reviews
-export const POST = async (req) => {
+// PUT /api/reviews
+export const PUT = async (req: {
+  json: () => PromiseLike<{ bookId: string; rating: number; text: string }>;
+}) => {
   try {
     await connectDB();
 
@@ -32,10 +34,15 @@ export const POST = async (req) => {
 
     // Update average rating
     // reduce() reduces an array to a single value
-    const totalRatings = book.reviews.reduce(
-      (sum, review) => sum + review.rating,
-      0
-    );
+
+    let totalRatings = rating;
+
+    if (book.reviews.length !== 0) {
+      totalRatings = book.reviews.reduce(
+        (sum: number, review: { rating: number }) => sum + review.rating,
+        0
+      );
+    }
 
     // Update book data
     const updatedBook = await Book.findByIdAndUpdate(
