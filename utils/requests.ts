@@ -60,4 +60,24 @@ async function fetchBooksByAuthor(author: any) {
   }
 }
 
-export { fetchBooks, fetchBookById, fetchBooksByAuthor };
+// Fetch books by genre
+async function fetchBooksByGenre(genre: string) {
+  try {
+    if (!apiDomain) {
+      return [];
+    }
+
+    const res = await fetch(`${apiDomain}/books/genre/${genre}`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+export { fetchBooks, fetchBookById, fetchBooksByAuthor, fetchBooksByGenre };
