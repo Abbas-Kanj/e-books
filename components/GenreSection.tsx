@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Spinner from "./Spinner";
+import React from "react";
 import BookCard from "./BookCard";
 import { fetchBooksByGenre } from "@/utils/requests";
 
@@ -13,15 +12,11 @@ const GenreSection = async ({ genre }: Props) => {
   return (
     <div className="flex flex-col gap-5 items-start">
       <h1 className="text-xl">{genre}</h1>
-      {!books ? (
-        <Spinner loading={true} />
-      ) : (
-        <div className="flex gap-10 w-full">
-          {books.map((book: any) => (
-            <BookCard key={book._id} book={book} />
-          ))}
-        </div>
-      )}
+      <div className="flex gap-10 w-full">
+        {books.map((book: any) => (
+          <BookCard key={book._id} book={book} />
+        ))}
+      </div>
     </div>
   );
 };
