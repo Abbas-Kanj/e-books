@@ -1,60 +1,44 @@
-"use client";
 import { fetchBookById } from "@/utils/requests";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import PurchaseCard from "@/components/PurchaseCard";
 import BookDetails from "@/components/BookDetails";
 import MoreFromAuthour from "@/components/MoreFromAuthour";
-import Spinner from "@/components/Spinner";
 import RatingsAndReviewsSection from "@/components/RatingsAndReviewsSection";
 import bookCover from "@/assets/Images/bookCover.jpg";
+import Spinner from "@/components/Spinner";
 
-const BookPage = () => {
-  const { id } = useParams();
-  const [book, setBook] = useState<Book | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchBookData = async () => {
-      if (!id) return;
-      try {
-        const res = await fetchBookById(id);
-        setBook(res);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    if (book === null) {
-      fetchBookData();
-    }
-  }, [id, book]);
+const BookPage = async ({ params }: { params: { id: string } }) => {
+  const book = await fetchBookById(params.id);
 
   return (
     <>
-      {loading && <Spinner loading={loading} />}
-      {!loading && book && (
-        <>
-          <section className="flex justify-evenly w-full p-2 gap-2">
-            <Image
-              src={book.imageUrl || bookCover}
-              alt="Book-Cover"
-              className="w-64 h-fit rounded-lg"
-              sizes="100vw"
-              width={0}
-              height={0}
-              quality={100}
-              priority={true}
-            />
-            <BookDetails book={book} />
-            <PurchaseCard book={book} />
-          </section>
-          <MoreFromAuthour book={book} />
-          <RatingsAndReviewsSection book={book} />
-        </>
-      )}
+      <section className="flex justify-evenly w-full p-2 gap-2">
+        <Suspense fallback={<Spinner loading={true} />}>
+          <Image
+            src={book.imageUrl || bookCover}
+            alt="Book-Cover"
+            className="w-64 h-fit rounded-lg"
+            sizes="100vw"
+            width={0}
+            height={0}
+            quality={100}
+            priority={true}
+          />
+        </Suspense>
+        <Suspense fallback={<Spinner loading={true} />}>
+          <BookDetails book={book} />
+        </Suspense>
+        <Suspense fallback={<Spinner loading={true} />}>
+          <PurchaseCard book={book} />
+        </Suspense>
+      </section>
+      <Suspense fallback={<Spinner loading={true} />}>
+        <MoreFromAuthour book={book} />
+      </Suspense>
+      <Suspense fallback={<Spinner loading={true} />}>
+        <RatingsAndReviewsSection book={book} />
+      </Suspense>
     </>
   );
 };
