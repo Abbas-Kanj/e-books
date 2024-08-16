@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { Suspense } from "react";
 import BookCard from "./BookCard";
 import { fetchBooks } from "@/utils/requests";
 import Spinner from "./Spinner";
@@ -17,9 +18,7 @@ const TrendingSection = async (props: Props) => {
       <h1 className="text-2xl font-semibold w-fit text-primary">
         Trending Books 🔥
       </h1>
-      {recentBooks.length === 0 ? (
-        <Spinner loading={true} />
-      ) : (
+      <Suspense fallback={<Spinner loading={true} />}>
         <div className="flex justify-between px-2 w-full">
           {recentBooks.map((book: Book, index: number) => (
             <div key={book._id} className="flex gap-1 items-center">
@@ -31,7 +30,7 @@ const TrendingSection = async (props: Props) => {
             </div>
           ))}
         </div>
-      )}
+      </Suspense>
     </section>
   );
 };
