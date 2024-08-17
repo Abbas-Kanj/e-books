@@ -4,8 +4,6 @@ import Book from "@/models/Book";
 // GET /api/books
 export const GET = async () => {
   try {
-    await connectDB();
-
     const books = await Book.find({});
 
     return new Response(JSON.stringify(books), { status: 200 });
