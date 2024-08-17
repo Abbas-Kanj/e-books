@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar";
 import Link from "next/link";
 import {
@@ -12,6 +12,8 @@ import {
   MdKeyboardArrowRight,
 } from "react-icons/md";
 import { usePathname } from "next/navigation";
+import { getProviders, useSession } from "next-auth/react";
+import RegisterModal from "./RegisterModal";
 
 type Props = {
   children: any;
@@ -19,11 +21,22 @@ type Props = {
 
 function Drawer({ children }: Props) {
   const pathname = usePathname();
+  const { data: session } = useSession();
+  const [providers, setProviders] = useState(null);
+  const myRegisterModelRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const setAuthProviders = async () => {
+      const res = await getProviders();
+      setProviders(res);
+    };
+    setAuthProviders();
+  }, []);
 
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center w-full">
+      <div className="drawer-content flex flex-col items-center w-full mb-10">
         {
           <>
             <Navbar />
@@ -70,16 +83,33 @@ function Drawer({ children }: Props) {
             >
               <MdExplore className="size-8" />
             </Link>
-            <Link
-              href="/bookmarks"
-              className={`${
-                pathname === "/bookmarks"
-                  ? "border-b-2 border-solid border-primary w-8"
-                  : ""
-              }  hover:opacity-50 self-center py-2`}
-            >
-              <MdBookmark className="size-8" />
-            </Link>
+
+            {!session ? (
+              <>
+                <MdBookmark
+                  className="size-12 hover:opacity-50
+                 self-center py-2 cursor-pointer"
+                  onClick={() => myRegisterModelRef.current?.showModal()}
+                />
+                <RegisterModal
+                  myRegisterModelRef={myRegisterModelRef}
+                  session={session}
+                  providers={providers}
+                />
+              </>
+            ) : (
+              <Link
+                href="/bookmarks"
+                className={`${
+                  pathname === "/bookmarks"
+                    ? "border-b-2 border-solid border-primary w-8"
+                    : ""
+                }  hover:opacity-50 self-center py-2`}
+              >
+                <MdBookmark className="size-8" />
+              </Link>
+            )}
+
             <Link
               href="/profileSettings"
               className={`${
