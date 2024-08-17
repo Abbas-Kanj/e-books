@@ -9,7 +9,7 @@ function ContinueReadingSection({}: Props) {
       <h1 className="text-xl font-semibold w-fit text-primary">
         Continue Reading...
       </h1>
-      <div className="flex flex-col bg-current rounded-md p-3 gap-2">
+      <div className="flex flex-col bg-base-300 rounded-md p-3 gap-2">
         <ContinueReadingBookCard />
         <div className="rounded-full w-72 h-0.5 self-center bg-base-200"></div>
         <ContinueReadingBookCard />

@@ -2,9 +2,7 @@ import Image from "next/image";
 import React from "react";
 import cover from "@/assets/Images/rdpd.jpg";
 
-type Props = {};
-
-function ContinueReadingBookCard({}: Props) {
+const ContinueReadingBookCard = () => {
   return (
     <div className="flex items-center gap-2 w-[540px]">
       <Image src={cover} alt="Book-Cover" className="size-28 rounded-lg" />
@@ -18,6 +16,6 @@ function ContinueReadingBookCard({}: Props) {
       </div>
     </div>
   );
-}
+};
 
 export default ContinueReadingBookCard;
