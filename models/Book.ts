@@ -45,6 +45,9 @@ const BookSchema = new Schema(
       required: [true, "Category is required"],
     },
     reviews: [ReviewSchema],
+    averageRating: {
+      type: Number,
+    },
     description: {
       type: String,
       required: [true, "Description is required"],
