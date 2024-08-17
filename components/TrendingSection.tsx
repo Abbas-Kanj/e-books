@@ -1,12 +1,9 @@
-"use client";
 import React, { Suspense } from "react";
 import BookCard from "./BookCard";
 import { fetchBooks } from "@/utils/requests";
 import Spinner from "./Spinner";
 
-type Props = {};
-
-const TrendingSection = async (props: Props) => {
+const TrendingSection = async () => {
   const books = await fetchBooks();
 
   const recentBooks = books
