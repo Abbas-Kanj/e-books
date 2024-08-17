@@ -5,7 +5,8 @@ interface Book {
   isbn: string;
   price: number;
   isFree: boolean;
-  category: string;
+  genre: Array;
+  averageRating: number;
   publisherDescription: string;
   detailedSummary: string;
   length: string;
@@ -13,4 +14,14 @@ interface Book {
   publishedDate: Date;
   imageUrl: string;
   audioUrl: string;
+}
+
+interface Review {
+  _id: string;
+  rating: number;
+  text: string;
+  userId: {
+    username: string;
+    image: string;
+  };
 }
