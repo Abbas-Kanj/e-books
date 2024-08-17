@@ -1,8 +1,12 @@
+"use client";
 import React from "react";
+import ShareButtons from "./ShareButtons";
 
-type Props = {};
+type Props = {
+  book: Book;
+};
 
-const PurchaseCard = (props: Props) => {
+const PurchaseCard = ({ book }: Props) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="card bg-primary text-primary-content h-fit w-80 shadow-xl">
@@ -13,7 +17,7 @@ const PurchaseCard = (props: Props) => {
           <p className="text-sm">Available for a limited time</p>
           <div className="card-actions justify-end mt-2">
             <button className="btn btn-secondary btn-wide font-bold">
-              Add to collection
+              Add to my collection
             </button>
             <button className="btn btn-primary shadow-none btn-wide font-bold">
               Start reading
@@ -27,10 +31,11 @@ const PurchaseCard = (props: Props) => {
             Only for <span className="text-green-500">$5.99</span>{" "}
           </h2>
           <div className="card-actions justify-end mt-3">
-            <button className="btn btn-secondary">Add to cart</button>
+            <button className="btn btn-secondary btn-wide">Add to cart</button>
           </div>
         </div>
       </div>
+      <ShareButtons book={book} />
     </div>
   );
 };
