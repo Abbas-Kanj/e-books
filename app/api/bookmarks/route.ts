@@ -1,9 +1,10 @@
 import connectDB from "@/config/database";
 import User from "@/models/User";
 import { getSessionUser } from "@/utils/getSessionUser";
+import { NextRequest } from "next/server";
 
 // GET /api/bookmarks/:id
-export const GET = async () => {
+export const GET = async (): Promise<Response> => {
   try {
     await connectDB();
 
@@ -16,15 +17,15 @@ export const GET = async () => {
     const { userId } = sessionUser;
 
     // Find user in database
-    const bookmarks = await User.findOne({ _id: userId }).select(
-      "bookmarks -_id"
-    );
+    const user = await User.findOne({ _id: userId }).select("bookmarks -_id");
 
-    if (bookmarks.length === 0) {
-      return [];
+    if (!user || !user.bookmarks || user.bookmarks.length === 0) {
+      return new Response(JSON.stringify({ bookmarks: [] }), { status: 200 });
     }
 
-    return new Response(JSON.stringify({ bookmarks }), { status: 200 });
+    return new Response(JSON.stringify({ bookmarks: user.bookmarks }), {
+      status: 200,
+    });
   } catch (error) {
     console.error(error);
     return new Response("Something went wrong", { status: 500 });
@@ -32,9 +33,7 @@ export const GET = async () => {
 };
 
 // POST /api/bookmarks
-export const POST = async (req: {
-  json: () => PromiseLike<{ bookId: any }> | { bookId: any };
-}) => {
+export const POST = async (req: NextRequest): Promise<Response> => {
   try {
     await connectDB();
 
@@ -70,7 +69,9 @@ export const POST = async (req: {
 
     await user.save();
 
-    return new Response(JSON.stringify({ message, isBookmarked, status: 200 }));
+    return new Response(JSON.stringify({ message, isBookmarked }), {
+      status: 200,
+    });
   } catch (error) {
     console.log(error);
     return new Response("Something went wrong", { status: 500 });

@@ -17,7 +17,9 @@ export const GET = async (
       select: "username image -_id", // exclude the id
     });
 
-    if (reviews.length === 0) return [];
+    if (reviews.length === 0) {
+      return new Response(JSON.stringify({ reviews }), { status: 200 });
+    }
 
     return new Response(JSON.stringify(reviews), { status: 200 });
   } catch (error) {

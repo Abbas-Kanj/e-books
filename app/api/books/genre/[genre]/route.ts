@@ -6,7 +6,7 @@ import { NextRequest } from "next/server";
 export const GET = async (
   req: NextRequest,
   { params }: { params: { genre: string } }
-) => {
+): Promise<Response> => {
   try {
     await connectDB();
 
@@ -18,7 +18,7 @@ export const GET = async (
       .lean();
 
     if (booksByGenre.length === 0) {
-      return [];
+      return new Response(JSON.stringify({ booksByGenre }), { status: 200 });
     }
 
     return new Response(JSON.stringify(booksByGenre), { status: 200 });
