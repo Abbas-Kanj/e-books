@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { MdBookmarkAdd, MdBookmarkRemove } from "react-icons/md";
 
 type Props = {
-  book: any;
+  book: Book;
 };
 
 const BookmarkButton = ({ book }: Props) => {
@@ -60,12 +60,12 @@ const BookmarkButton = ({ book }: Props) => {
 
   return !isBookmarked ? (
     <MdBookmarkAdd
-      className="absolute top-0 left-0 size-7 z-20 bg-base-100 rounded-btn p-1 cursor-pointer hover:opacity-60"
+      className="absolute top-0 left-0 size-7 z-10 bg-base-100 rounded-btn p-1 cursor-pointer hover:opacity-60"
       onClick={handleClick}
     />
   ) : (
     <MdBookmarkRemove
-      className="absolute top-0 left-0 size-7 z-20 bg-base-100 rounded-btn p-1 cursor-pointer hover:opacity-60"
+      className="absolute top-0 left-0 size-7 z-10 bg-base-100 rounded-btn p-1 cursor-pointer hover:opacity-60"
       onClick={handleClick}
     />
   );
