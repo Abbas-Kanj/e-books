@@ -1,9 +1,10 @@
 "use client";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { Suspense, useEffect } from "react";
 import BookmarkButton from "./BookmarkButton";
+import bookCover from "@/assets/Images/bookCover.jpg";
+import Spinner from "./Spinner";
 
 type Props = {
   book: Book;
@@ -12,26 +13,29 @@ type Props = {
 const BookCard = ({ book }: Props) => {
   const router = useRouter();
 
-  const { imageUrl, title, _id } = book;
+  const { imageUrl, title, _id } = book || {};
 
   return (
-    <>
-      <div className="flex flex-col gap-2 relative text-start">
+    <Suspense fallback={<Spinner loading={true} />}>
+      <div className="flex flex-col gap-2 relative text-start w-40">
         <BookmarkButton book={book} />
         <Image
-          src={imageUrl}
+          src={imageUrl || bookCover}
           sizes="100vw"
           priority={true}
           height={0}
           width={0}
           alt="Book-Cover"
-          className="xl:w-44 lg:w-36 md:w-28 rounded-lg hover:opacity-20 cursor-pointer"
-          onClick={() => router.push(`books/${_id}`)}
+          className="xl:min-w-44 lg:min-w-36 md:w-28 sm:min-w-14 rounded-lg hover:opacity-20 cursor-pointer"
+          onClick={() => router.push(`/books/${_id}`)}
         />
-        <h2 className="font-medium xl:text-base lg:text-base">{title}</h2>
+        {title && (
+          <h2 className="font-medium xl:text-base lg:text-base truncate">
+            {title}
+          </h2>
+        )}
       </div>
-      <div className="rounded-full w-1 h-56 self-center bg-current"></div>
-    </>
+    </Suspense>
   );
 };
 
