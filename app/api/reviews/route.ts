@@ -2,11 +2,10 @@ import connectDB from "@/config/database";
 import Book from "@/models/Book";
 import User from "@/models/User";
 import { getSessionUser } from "@/utils/getSessionUser";
+import { NextRequest } from "next/server";
 
 // PUT /api/reviews
-export const PUT = async (req: {
-  json: () => PromiseLike<{ bookId: string; rating: number; text: string }>;
-}) => {
+export const PUT = async (req: NextRequest) => {
   try {
     await connectDB();
 

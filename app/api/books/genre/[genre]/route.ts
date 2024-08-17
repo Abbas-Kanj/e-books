@@ -1,8 +1,12 @@
 import connectDB from "@/config/database";
 import Book from "@/models/Book";
+import { NextRequest } from "next/server";
 
 // GET /api/books/genre/:genre
-export const GET = async (req, { params }) => {
+export const GET = async (
+  req: NextRequest,
+  { params }: { params: { genre: string } }
+) => {
   try {
     await connectDB();
 

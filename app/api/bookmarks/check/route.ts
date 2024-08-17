@@ -1,12 +1,11 @@
 import connectDB from "@/config/database";
 import User from "@/models/User";
 import { getSessionUser } from "@/utils/getSessionUser";
+import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-export const POST = async (req: {
-  json: () => PromiseLike<{ bookId: any }> | { bookId: any };
-}) => {
+export const POST = async (req: NextRequest) => {
   try {
     await connectDB();
 

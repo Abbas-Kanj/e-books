@@ -1,10 +1,9 @@
 import connectDB from "@/config/database";
 import Book from "@/models/Book";
+import { NextRequest } from "next/server";
 
 // POST /api/search
-export const POST = async (req: {
-  json: () => PromiseLike<{ searchedData: Array<any> }>;
-}) => {
+export const POST = async (req: NextRequest) => {
   try {
     await connectDB();
 
