@@ -7,7 +7,9 @@ const HomePage = async () => {
   await connectDB();
   return (
     <main className="flex flex-col w-full items-start text-center p-4 gap-4">
-      <h2 className="self-center">"Knowledge is power." - Francis Bacon</h2>
+      <h2 className="self-center">
+        &ldquo;Knowledge is power.&rdquo; - Francis Bacon
+      </h2>
       <TrendingSection />
       <div className="flex gap-4">
         <ContinueReadingSection />
