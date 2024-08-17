@@ -8,7 +8,7 @@ export const GET = async (
   { params }: { params: { id: string } }
 ) => {
   try {
-    await connectDB();
+    // await connectDB();
 
     const { id } = params;
 
