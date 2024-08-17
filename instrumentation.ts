@@ -1,4 +1,4 @@
-import dbConnnect from "@/dbConnection";
+import dbConnnect from "@/config/dbConnection";
 
 export async function register() {
   try {
