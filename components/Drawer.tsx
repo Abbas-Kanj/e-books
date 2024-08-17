@@ -12,17 +12,29 @@ import {
   MdKeyboardArrowRight,
 } from "react-icons/md";
 import { usePathname } from "next/navigation";
-import { getProviders, useSession } from "next-auth/react";
+import {
+  ClientSafeProvider,
+  getProviders,
+  LiteralUnion,
+  useSession,
+} from "next-auth/react";
 import RegisterModal from "./RegisterModal";
+import { BuiltInProviderType } from "next-auth/providers/index";
 
 type Props = {
   children: any;
 };
 
+// Type definition for the providers
+type Providers = Record<
+  LiteralUnion<BuiltInProviderType, string>,
+  ClientSafeProvider
+> | null;
+
 function Drawer({ children }: Props) {
   const pathname = usePathname();
   const { data: session } = useSession();
-  const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = useState<Providers>(null);
   const myRegisterModelRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {

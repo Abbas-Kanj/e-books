@@ -4,8 +4,19 @@ import RateButton from "./RateButton";
 import { addBookReview } from "@/utils/requests";
 import { toast } from "react-toastify";
 import { useParams } from "next/navigation";
-import { getProviders, useSession } from "next-auth/react";
+import {
+  ClientSafeProvider,
+  getProviders,
+  LiteralUnion,
+  useSession,
+} from "next-auth/react";
 import RegisterModal from "./RegisterModal";
+import { BuiltInProviderType } from "next-auth/providers/index";
+
+type Providers = Record<
+  LiteralUnion<BuiltInProviderType, string>,
+  ClientSafeProvider
+> | null;
 
 const ReviewButton = () => {
   const { id } = useParams();
@@ -18,7 +29,7 @@ const ReviewButton = () => {
   // States
   const [text, setText] = useState("");
   const [rating, setRating] = useState(1);
-  const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = useState<Providers>(null);
 
   // Handle review submit function
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

@@ -2,13 +2,27 @@
 import React, { useEffect, useState } from "react";
 import ThemeController from "./ThemeController";
 import Image from "next/image";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import {
+  signIn,
+  signOut,
+  useSession,
+  getProviders,
+  ClientSafeProvider,
+  LiteralUnion,
+} from "next-auth/react";
 import { FaGoogle } from "react-icons/fa";
 import SearchBox from "./SearchBox";
+import { BuiltInProviderType } from "next-auth/providers/index";
+
+// Type definition for the providers
+type Providers = Record<
+  LiteralUnion<BuiltInProviderType, string>,
+  ClientSafeProvider
+> | null;
 
 const Navbar = () => {
   const { data: session } = useSession();
-  const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = useState<Providers>(null);
 
   const profileImage = session?.user?.image;
 
