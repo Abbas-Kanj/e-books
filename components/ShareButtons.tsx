@@ -24,8 +24,7 @@ const ShareButtons = ({ book }: Props) => {
           <div className="flex gap-3 justify-center pb-5">
             <FacebookShareButton
               url={shareUrl}
-              quote={book.title}
-              hashtag={`#${book.genre}`}
+              hashtag={`#${book.title}`}
               className="hover:opacity-45"
             >
               <FacebookIcon size={40} round={true} />

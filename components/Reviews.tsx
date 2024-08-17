@@ -15,7 +15,7 @@ const Reviews = ({ book }: Props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBookReviews = async (id) => {
+    const fetchBookReviews = async (id: string) => {
       try {
         // handle the case where the domain is not available yet
         if (!apiDomain) {
@@ -32,7 +32,11 @@ const Reviews = ({ book }: Props) => {
         setLoading(false);
       }
     };
-    fetchBookReviews(id);
+    if (typeof id === "string") {
+      fetchBookReviews(id);
+    } else {
+      console.error("id must be a string");
+    }
   }, [id, book]);
 
   return (
