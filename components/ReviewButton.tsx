@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import RateButton from "./RateButton";
-import { addBookReview, apiDomain } from "@/utils/requests";
+import { addBookReview } from "@/utils/requests";
 import { toast } from "react-toastify";
 import { useParams } from "next/navigation";
 import { getProviders, useSession } from "next-auth/react";

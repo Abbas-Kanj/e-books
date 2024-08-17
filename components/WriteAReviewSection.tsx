@@ -1,16 +1,11 @@
 "use client";
 import React from "react";
-import RateButton from "./RateButton";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import userImage from "@/assets/Images/userImage.webp";
 import ReviewButton from "./ReviewButton";
 
-type Props = {
-  book: Book;
-};
-
-const WriteAReviewSection = ({ book }: Props) => {
+const WriteAReviewSection = () => {
   const { data: session } = useSession();
 
   const profileImage = session?.user?.image;
@@ -26,7 +21,7 @@ const WriteAReviewSection = ({ book }: Props) => {
       />
       <h1 className="text-2xl font-semibold mb-4">What do you think?</h1>
       <div>
-        <ReviewButton book={book} />
+        <ReviewButton />
       </div>
     </section>
   );

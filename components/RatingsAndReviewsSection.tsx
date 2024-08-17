@@ -22,7 +22,7 @@ const RatingsAndReviewsSection = ({ book }: Props) => {
           <Ratings />
           <Progress />
         </div>
-        <WriteAReviewSection book={book} />
+        <WriteAReviewSection />
       </div>
       <Reviews book={book} />
     </section>
