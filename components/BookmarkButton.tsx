@@ -1,4 +1,5 @@
 "use client";
+import { Book } from "@/types/book";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { MdBookmarkAdd, MdBookmarkRemove } from "react-icons/md";

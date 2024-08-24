@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Rating from "./Rating";
+import { Review } from "@/types/review";
 
 type Props = {
   review: Review;

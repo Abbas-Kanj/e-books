@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import BookmarkButton from "./BookmarkButton";
 import bookCover from "@/assets/Images/bookCover.jpg";
 import Spinner from "./Spinner";
+import { Book } from "@/types/book";
 
 type Props = {
   book: Book;
@@ -13,14 +14,14 @@ type Props = {
 const BookCard = ({ book }: Props) => {
   const router = useRouter();
 
-  const { imageUrl, title, _id } = book || {};
+  const { image, title, _id } = book;
 
   return (
     <Suspense fallback={<Spinner loading={true} />}>
       <div className="flex flex-col gap-2 relative text-start w-40">
         <BookmarkButton book={book} />
         <Image
-          src={imageUrl || bookCover}
+          src={image || bookCover}
           sizes="100vw"
           priority={true}
           height={0}

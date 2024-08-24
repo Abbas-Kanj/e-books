@@ -6,8 +6,6 @@ import { NextRequest } from "next/server";
 // PUT /api/reviews
 export const PUT = async (req: NextRequest) => {
   try {
-    // await connectDB();
-
     const sessionUser = await getSessionUser();
 
     if (!sessionUser || !sessionUser.userId) {

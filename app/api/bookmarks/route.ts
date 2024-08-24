@@ -1,4 +1,3 @@
-import connectDB from "@/config/database";
 import User from "@/models/User";
 import { getSessionUser } from "@/utils/getSessionUser";
 import { NextRequest } from "next/server";
@@ -6,8 +5,6 @@ import { NextRequest } from "next/server";
 // GET /api/bookmarks/:id
 export const GET = async (): Promise<Response> => {
   try {
-    await connectDB();
-
     const sessionUser = await getSessionUser();
 
     if (!sessionUser || !sessionUser.userId) {
@@ -35,8 +32,6 @@ export const GET = async (): Promise<Response> => {
 // POST /api/bookmarks
 export const POST = async (req: NextRequest): Promise<Response> => {
   try {
-    await connectDB();
-
     const { bookId } = await req.json();
 
     const sessionUser = await getSessionUser();
