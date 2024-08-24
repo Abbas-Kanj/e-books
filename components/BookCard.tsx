@@ -26,7 +26,7 @@ const BookCard = ({ book }: Props) => {
           height={0}
           width={0}
           alt="Book-Cover"
-          className="xl:min-w-44 lg:min-w-36 md:w-28 sm:min-w-14 rounded-lg hover:opacity-20 cursor-pointer"
+          className="xl:min-w-44 lg:min-w-36 md:w-28 sm:min-w-14 min-h-72 max-h-72 rounded-lg hover:opacity-20 cursor-pointer"
           onClick={() => router.push(`/books/${_id}`)}
         />
         {title && (
