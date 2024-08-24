@@ -3,6 +3,7 @@ import Ratings from "./Ratings";
 import Progress from "./Progress";
 import WriteAReviewSection from "./WriteAReviewSection";
 import Reviews from "./Reviews";
+import { Book } from "@/types/book";
 
 type Props = {
   book: Book;

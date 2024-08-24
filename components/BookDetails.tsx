@@ -1,4 +1,5 @@
 "use client";
+import { Book } from "@/types/book";
 import React, { useState } from "react";
 
 type Props = {

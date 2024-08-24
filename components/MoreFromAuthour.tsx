@@ -1,6 +1,7 @@
 import React from "react";
 import BookCard from "./BookCard";
 import { fetchBooksByAuthor } from "@/utils/requests";
+import { Book } from "@/types/book";
 
 type Props = {
   book: Book;
