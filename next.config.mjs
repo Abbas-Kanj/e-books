@@ -25,25 +25,14 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "upload.wikimedia.org",
+        hostname: "res.cloudinary.com",
         pathname: "**",
       },
       {
         protocol: "https",
-        hostname: "example.com",
+        hostname: "img.daisyui.com",
         pathname: "**",
       },
-      {
-        protocol: "https",
-        hostname: "bookstore.com",
-        pathname: "**",
-      },
-      {
-        protocol: "https",
-        hostname: "images-na.ssl-images-amazon.com",
-        pathname: "**",
-      },
-      // user's google profile picture
       {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
