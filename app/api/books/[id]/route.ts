@@ -6,7 +6,6 @@ export const GET = async (
   req: NextRequest,
   { params }: { params: { id: string } }
 ) => {
-  try {
     const { id } = params;
 
     const book = await Book.findById(id);
