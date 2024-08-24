@@ -1,7 +1,6 @@
 import CategoriesSection from "@/components/CategoriesSection";
 import ContinueReadingSection from "@/components/ContinueReadingSection";
 import TrendingSection from "@/components/TrendingSection";
-import connectDB from "@/config/database";
 
 const HomePage = async () => {
   return (
