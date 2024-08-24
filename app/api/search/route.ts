@@ -1,12 +1,9 @@
-import connectDB from "@/config/database";
 import Book from "@/models/Book";
 import { NextRequest } from "next/server";
 
 // POST /api/search
 export const POST = async (req: NextRequest) => {
   try {
-    await connectDB();
-
     const { searchedData } = await req.json();
 
     // handle if search field is empty
@@ -26,7 +23,7 @@ export const POST = async (req: NextRequest) => {
         { title: { $in: regExPattern } },
         { author: { $in: regExPattern } },
       ],
-    }).select("_id imageUrl author title");
+    }).select("_id image author title");
 
     if (results.length === 0) {
       return new Response(

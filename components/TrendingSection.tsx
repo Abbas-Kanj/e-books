@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import BookCard from "./BookCard";
 import { fetchBooks } from "@/utils/requests";
 import Spinner from "./Spinner";
+import { Book } from "@/types/book";
 
 const TrendingSection = async () => {
   const books = await fetchBooks();

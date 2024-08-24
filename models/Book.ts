@@ -36,9 +36,11 @@ const BookSchema = new Schema(
       type: String,
       required: [true, "ISBN is required"],
     },
+    isFree: {
+      type: Boolean,
+    },
     price: {
       type: Number,
-      required: [true, "Price is required"],
     },
     genre: {
       type: Array,
@@ -48,9 +50,9 @@ const BookSchema = new Schema(
     averageRating: {
       type: Number,
     },
-    description: {
-      type: String,
-      required: [true, "Description is required"],
+    length: {
+      type: Number,
+      required: [true, "Length is required"],
     },
     publishedDate: {
       type: Date,

@@ -4,7 +4,6 @@ import TrendingSection from "@/components/TrendingSection";
 import connectDB from "@/config/database";
 
 const HomePage = async () => {
-  await connectDB();
   return (
     <main className="flex flex-col w-full items-start text-center p-4 gap-4">
       <h2 className="self-center">

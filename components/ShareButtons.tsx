@@ -1,3 +1,4 @@
+import { Book } from "@/types/book";
 import React from "react";
 import {
   FacebookShareButton,

@@ -2,6 +2,7 @@ import React from "react";
 import BookCard from "./BookCard";
 import { fetchBooksByGenre } from "@/utils/requests";
 import Link from "next/link";
+import { Book } from "@/types/book";
 
 type Props = {
   genre: string;
@@ -14,7 +15,7 @@ const GenreSection = async ({ genre }: Props) => {
     <div className="flex flex-col gap-5 items-start">
       <h1 className="text-xl font-bold">{genre}</h1>
       <div className="flex gap-10 w-full">
-        {books.map((book: any) => (
+        {books.map((book: Book) => (
           <BookCard key={book._id} book={book} />
         ))}
       </div>

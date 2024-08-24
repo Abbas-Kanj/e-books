@@ -1,4 +1,3 @@
-import connectDB from "@/config/database";
 import Book from "@/models/Book";
 import { NextRequest } from "next/server";
 
@@ -8,13 +7,11 @@ export const GET = async (
   { params }: { params: { genre: string } }
 ): Promise<Response> => {
   try {
-    await connectDB();
-
     const { genre } = params;
 
     const booksByGenre = await Book.find({ genre: genre })
       .limit(5)
-      .select("_id imageUrl")
+      .select("_id image")
       .lean();
 
     if (booksByGenre.length === 0) {

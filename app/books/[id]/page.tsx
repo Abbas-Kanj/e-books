@@ -16,7 +16,7 @@ const BookPage = async ({ params }: { params: { id: string } }) => {
       <section className="flex justify-evenly w-full p-2 gap-2">
         <Suspense fallback={<Spinner loading={true} />}>
           <Image
-            src={book.imageUrl || bookCover}
+            src={book.image || bookCover}
             alt="Book-Cover"
             className="w-64 h-fit rounded-lg"
             sizes="100vw"
