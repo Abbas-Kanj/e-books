@@ -1,5 +1,4 @@
 import GoogleProvider from "next-auth/providers/google";
-import connectDB from "@/config/database";
 import User from "@/models/User";
 import type { NextAuthOptions } from "next-auth";
 import type { GoogleProfile } from "next-auth/providers/google";
