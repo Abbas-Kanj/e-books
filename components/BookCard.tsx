@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { Suspense } from "react";
 import BookmarkButton from "./BookmarkButton";
-import bookCover from "@/assets/Images/bookCover.jpg";
 import Spinner from "./Spinner";
 import { Book } from "@/types/book";
 
@@ -21,7 +20,7 @@ const BookCard = ({ book }: Props) => {
       <div className="flex flex-col gap-2 relative text-start w-40">
         <BookmarkButton book={book} />
         <Image
-          src={image || bookCover}
+          src={image}
           sizes="100vw"
           priority={true}
           height={0}
