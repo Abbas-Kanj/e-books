@@ -23,9 +23,6 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, account, profile, email, credentials }) {
       const googleProfile = profile as GoogleProfile;
 
-      // Connect to Db
-      await connectDB();
-
       // Check if user exists
       const userExists = await User.findOne({ email: googleProfile.email });
 
