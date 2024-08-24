@@ -1,4 +1,3 @@
-import connectDB from "@/config/database";
 import Book from "@/models/Book";
 
 // GET /api/books
