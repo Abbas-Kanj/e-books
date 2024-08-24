@@ -1,4 +1,3 @@
-import connectDB from "@/config/database";
 import Book from "@/models/Book";
 import { NextRequest } from "next/server";
 
@@ -8,8 +7,6 @@ export const GET = async (
   { params }: { params: { id: string } }
 ) => {
   try {
-    await connectDB();
-
     const { id } = params;
 
     const book = await Book.findById(id);
