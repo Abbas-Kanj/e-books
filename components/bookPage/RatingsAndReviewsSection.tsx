@@ -1,9 +1,9 @@
 import React from "react";
-import Ratings from "./Ratings";
-import Progress from "./Progress";
-import WriteAReviewSection from "./WriteAReviewSection";
-import Reviews from "./Reviews";
+import Ratings from "./ratingAndProgress/Ratings";
+import Progress from "./ratingAndProgress/Progress";
+import Reviews from "./ratingAndProgress/Reviews";
 import { Book } from "@/types/book";
+import WriteAReviewSection from "./WriteAReviewSection";
 
 type Props = {
   book: Book;

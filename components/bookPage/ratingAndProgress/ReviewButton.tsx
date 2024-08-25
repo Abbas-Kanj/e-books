@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import RateButton from "./RateButton";
 import { addBookReview } from "@/utils/requests";
 import { toast } from "react-toastify";
 import { useParams } from "next/navigation";
@@ -10,8 +9,9 @@ import {
   LiteralUnion,
   useSession,
 } from "next-auth/react";
-import RegisterModal from "./RegisterModal";
 import { BuiltInProviderType } from "next-auth/providers/index";
+import RegisterModal from "@/components/RegisterModal";
+import RateButton from "./RateButton";
 
 type Providers = Record<
   LiteralUnion<BuiltInProviderType, string>,
@@ -73,6 +73,7 @@ const ReviewButton = () => {
         myRegisterModelRef={myRegisterModelRef}
         session={session}
         providers={providers}
+        title="Login to write a review 😃"
       />
       <dialog id="my_modal_3" ref={myReviewModelRef} className="modal">
         <div className="modal-box">

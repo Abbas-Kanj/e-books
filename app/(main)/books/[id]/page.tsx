@@ -1,12 +1,12 @@
 import { fetchBookById } from "@/utils/requests";
 import Image from "next/image";
 import React, { Suspense } from "react";
-import PurchaseCard from "@/components/PurchaseCard";
-import BookDetails from "@/components/BookDetails";
-import MoreFromAuthour from "@/components/MoreFromAuthour";
-import RatingsAndReviewsSection from "@/components/RatingsAndReviewsSection";
+import BookDetails from "@/components/bookPage/BookDetails";
+import MoreFromAuthour from "@/components/bookPage/MoreFromAuthour";
+import RatingsAndReviewsSection from "@/components/bookPage/RatingsAndReviewsSection";
 import bookCover from "@/assets/Images/bookCover.jpg";
 import Spinner from "@/components/Spinner";
+import PurchaseCard from "@/components/bookPage/PurchaseCard";
 
 const BookPage = async ({ params }: { params: { id: string } }) => {
   const book = await fetchBookById(params.id);

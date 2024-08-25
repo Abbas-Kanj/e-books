@@ -7,13 +7,19 @@ type Props = {
   myRegisterModelRef: any;
   session: any;
   providers: any;
+  title: string;
 };
 
-const RegisterModal = ({ myRegisterModelRef, session, providers }: Props) => {
+const RegisterModal = ({
+  myRegisterModelRef,
+  session,
+  providers,
+  title,
+}: Props) => {
   return (
     <dialog id="my_modal_2" ref={myRegisterModelRef} className="modal">
       <div className="modal-box flex flex-col items-center gap-10 w-fit p-10">
-        <h3 className="text-center text-lg">Login to write a review 😃</h3>
+        <h3 className="text-center text-lg">{title}</h3>
         {!session &&
           providers &&
           Object.values(providers).map((provider: any, index) => (

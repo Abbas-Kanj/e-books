@@ -1,5 +1,5 @@
-import BrowseSection from "@/components/BrowseSection";
-import DiscoverBooksSection from "@/components/DiscoverBooksSection";
+import BrowseSection from "@/components/explore/BrowseSection";
+import DiscoverBooksSection from "@/components/explore/DiscoverBooksSection";
 import React from "react";
 
 const ExplorePage = () => {

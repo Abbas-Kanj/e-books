@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import ShareButtons from "./ShareButtons";
 import { Book } from "@/types/book";
+import ShareButtons from "../ShareButtons";
 
 type Props = {
   book: Book;

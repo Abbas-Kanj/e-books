@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
-import BookCard from "./BookCard";
 import { fetchBooks } from "@/utils/requests";
-import Spinner from "./Spinner";
 import { Book } from "@/types/book";
+import Spinner from "../Spinner";
+import BookCard from "../BookCard";
 
 const TrendingSection = async () => {
   const books = await fetchBooks();

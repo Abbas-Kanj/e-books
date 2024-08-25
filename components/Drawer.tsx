@@ -107,6 +107,7 @@ function Drawer({ children }: Props) {
                   myRegisterModelRef={myRegisterModelRef}
                   session={session}
                   providers={providers}
+                  title="Login to view your bookmarks 😃"
                 />
               </>
             ) : (
