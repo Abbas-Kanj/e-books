@@ -3,7 +3,7 @@ import { apiDomain } from "@/utils/requests";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import ReviewCard from "./ReviewCard";
-import Spinner from "./Spinner";
+import Spinner from "../../Spinner";
 import { Book } from "@/types/book";
 import { Review } from "@/types/review";
 

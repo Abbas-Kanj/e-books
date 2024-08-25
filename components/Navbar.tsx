@@ -11,7 +11,7 @@ import {
   LiteralUnion,
 } from "next-auth/react";
 import { FaGoogle } from "react-icons/fa";
-import SearchBox from "./SearchBox";
+import SearchBox from "./searchBox/SearchBox";
 import { BuiltInProviderType } from "next-auth/providers/index";
 
 // Type definition for the providers

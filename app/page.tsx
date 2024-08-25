@@ -1,6 +1,6 @@
-import CategoriesSection from "@/components/CategoriesSection";
-import ContinueReadingSection from "@/components/ContinueReadingSection";
-import TrendingSection from "@/components/TrendingSection";
+import TrendingSection from "@/components/bookPage/TrendingSection";
+import CategoriesSection from "@/components/main/CategoriesSection";
+import ContinueReadingSection from "@/components/main/ContinueReadingSection";
 
 const HomePage = async () => {
   return (
