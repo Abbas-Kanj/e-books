@@ -1,8 +1,8 @@
 import React from "react";
-import BookCard from "./BookCard";
 import { fetchBooksByGenre } from "@/utils/requests";
 import Link from "next/link";
 import { Book } from "@/types/book";
+import BookCard from "../BookCard";
 
 type Props = {
   genre: string;
