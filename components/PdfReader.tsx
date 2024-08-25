@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Document, Page } from "react-pdf";
 
-export default function PdfReader() {
+const PdfReader = () => {
   const pdfUrl = "/mdlb.pdf";
   const [numPages, setNumPages] = useState<number>();
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -37,4 +37,6 @@ export default function PdfReader() {
       </div>
     </div>
   );
-}
+};
+
+export default PdfReader;
