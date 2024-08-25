@@ -1,17 +1,11 @@
 "use client";
-import PdfReader from "@/components/PdfReader";
-import React, { useEffect } from "react";
-import { pdfjs } from "react-pdf";
+import PdfReader from "@/components/PdfReader.client";
+import React from "react";
+import { polyfillPromiseWithResolvers } from "@/utils/polyfilsResolver";
+
+polyfillPromiseWithResolvers();
 
 const BookmarksPage = () => {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-        "pdfjs-dist/build/pdf.worker.min.mjs",
-        import.meta.url
-      ).toString();
-    }
-  }, []); // Runs once on mount
   return (
     <div>
       <PdfReader />
