@@ -8,7 +8,7 @@ async function fetchBooks() {
       return [];
     }
 
-    const res = await fetch(`${apiDomain}/books`, { cache: "no-store" });
+    const res = await fetch(`${apiDomain}/books`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch data");
