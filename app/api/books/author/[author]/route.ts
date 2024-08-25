@@ -11,7 +11,7 @@ export const GET = async (
 
     const authourBooks = await Book.find({ author: author })
       .limit(6)
-      .select("title author price isFree imageUrl")
+      .select("title author price isFree image")
       // lean() is used for better performance as it returns plain JavaScript
       // objects instead of full Mongoose documents.
       .lean();
