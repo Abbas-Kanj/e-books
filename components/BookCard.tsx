@@ -19,16 +19,18 @@ const BookCard = ({ book }: Props) => {
     <Suspense fallback={<Spinner loading={true} />}>
       <div className="flex flex-col gap-2 relative text-start w-40">
         <BookmarkButton book={book} />
-        <Image
-          src={image}
-          sizes="100vw"
-          priority={true}
-          height={0}
-          width={0}
-          alt="Book-Cover"
-          className="xl:min-w-44 lg:min-w-36 md:w-28 sm:min-w-14 min-h-72 max-h-72 rounded-lg hover:opacity-20 cursor-pointer"
-          onClick={() => router.push(`/books/${_id}`)}
-        />
+        <div className="aspect-[2/3] relative w-full">
+          <Image
+            src={image}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={true}
+            alt="Book-Cover"
+            className="rounded-lg hover:opacity-20 cursor-pointer"
+            onClick={() => router.push(`/books/${_id}`)}
+          />
+        </div>
+
         {title && (
           <h2 className="font-medium xl:text-base lg:text-base truncate">
             {title}
