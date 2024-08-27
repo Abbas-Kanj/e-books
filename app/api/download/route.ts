@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const storage = new Storage({
-      keyFilename: "e-books-431615-5a126ba39e05.json",
+      keyFilename: "e-books-431615-bf304bc56bf9.json",
     });
 
     const bucketName = "book_collection_1";
