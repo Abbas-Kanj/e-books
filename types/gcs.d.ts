@@ -1,6 +1,7 @@
 declare module "@google-cloud/storage" {
   export interface StorageOptions {
-    keyFilename: string;
+    projectId;
+    credentials;
   }
 
   export class Storage {

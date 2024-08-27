@@ -14,7 +14,14 @@ export async function GET(request: NextRequest) {
 
   try {
     const storage = new Storage({
-      keyFilename: "e-books-431615-bf304bc56bf9.json",
+      projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+      credentials: {
+        client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY?.replace(
+          /\\n/g,
+          "\n"
+        ),
+      },
     });
 
     const bucketName = "book_collection_1";
