@@ -7,6 +7,8 @@ import Spinner from "./Spinner";
 import { apiDomain } from "@/utils/requests";
 import { useRouter } from "next/navigation";
 
+import type { PDFDocumentProxy } from "pdfjs-dist";
+
 const options = {
   cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
 };
@@ -42,7 +44,7 @@ const PdfReader = ({ pdfFileName }: Props) => {
     fetchPdf();
   }, [pdfFileName]);
 
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
+  function onDocumentLoadSuccess({ numPages }: PDFDocumentProxy): void {
     setNumPages(numPages);
   }
 
