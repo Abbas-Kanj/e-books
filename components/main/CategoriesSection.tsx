@@ -16,11 +16,11 @@ type Props = {};
 
 function CategoriesSection({}: Props) {
   return (
-    <section className="flex flex-col gap-4 w-[560px] mt-4">
+    <section className="flex flex-col gap-4 w-full mx-auto md:w-[560px] mt-4">
       <h1 className="text-xl font-semibold w-fit text-primary">
         Discover Popular Categories
       </h1>
-      <div className="grid grid-cols-3 bg-transparent rounded-md p-3 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 bg-transparent rounded-md p-3 gap-3">
         <Link
           href="/explore/action"
           className="flex items-center gap-2 px-3 py-1 rounded-lg border-current border border-solid cursor-pointer hover:opacity-40 w-fit"

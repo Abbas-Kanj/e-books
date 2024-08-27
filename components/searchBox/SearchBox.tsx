@@ -61,7 +61,7 @@ const SearchBox = () => {
         />
       )}
 
-      <label className="input input-bordered flex items-center gap-2">
+      <label className="input input-bordered w-72 md:w-96 flex items-center gap-2">
         <input
           role="button"
           type="text"
