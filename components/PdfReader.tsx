@@ -24,6 +24,24 @@ const PdfReader = ({ pdfFileName }: Props) => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 
+  useEffect(() => {
+    const fetchPdf = async () => {
+      try {
+        const response = await fetch(
+          `${apiDomain}/download?fileName=${encodeURIComponent(pdfFileName)}`
+        );
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        setPdfUrl(url);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPdf();
+  }, [pdfFileName]);
+
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
   }
