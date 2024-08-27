@@ -16,6 +16,7 @@ export interface Book {
   };
   publishedDate: Date;
   image: string;
+  pdfFileName: string;
   audioUrl: string;
   createdAt: Date;
   updatedAt: Date;
