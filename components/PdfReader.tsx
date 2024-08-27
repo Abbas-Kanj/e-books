@@ -36,7 +36,7 @@ const PdfReader = ({ pdfFileName }: Props) => {
     <>
       {!pdfUrl && loading && <Spinner loading={loading} />}
       {pdfUrl && !loading && (
-        <div>
+        <div className="flex flex-col gap-8">
           <Document
             options={options}
             file={pdfUrl}
@@ -63,25 +63,25 @@ const PdfReader = ({ pdfFileName }: Props) => {
             />
           </Document>
           {numPages && (
-            <>
-              <p>
+            <div className="join self-center">
+              <button
+                className="join-item btn"
+                onClick={() => handlePageChange(-1)}
+                disabled={pageNumber === 1}
+              >
+                «
+              </button>
+              <p className="join-item btn">
                 Page {pageNumber} of {numPages}
               </p>
-              <div className="flex justify-around">
-                <button
-                  onClick={() => handlePageChange(-1)}
-                  disabled={pageNumber === 1}
-                >
-                  Back Page
-                </button>
-                <button
-                  onClick={() => handlePageChange(1)}
-                  disabled={pageNumber === numPages}
-                >
-                  Next Page
-                </button>
-              </div>
-            </>
+              <button
+                className="join-item btn"
+                onClick={() => handlePageChange(1)}
+                disabled={pageNumber === numPages}
+              >
+                »
+              </button>
+            </div>
           )}
         </div>
       )}
