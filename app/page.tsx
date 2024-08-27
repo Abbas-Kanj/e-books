@@ -9,7 +9,7 @@ const HomePage = async () => {
         &ldquo;Knowledge is power.&rdquo; - Francis Bacon
       </h2>
       <TrendingSection />
-      <div className="flex gap-4">
+      <div className="flex flex-col md:flex-row gap-4">
         <ContinueReadingSection />
         <CategoriesSection />
       </div>

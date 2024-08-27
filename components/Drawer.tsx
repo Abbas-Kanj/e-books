@@ -59,7 +59,7 @@ function Drawer({ children }: Props) {
           htmlFor="my-drawer-2"
           className="btn btn-base-content px-2 opacity-60 hover:opacity-100 lg:hidden fixed left-1 top-60"
         >
-          <MdKeyboardArrowRight className="size-6" />
+          <MdKeyboardArrowRight className="size-6 z-50" />
         </label>
       </div>
       <div className="drawer-side z-50">

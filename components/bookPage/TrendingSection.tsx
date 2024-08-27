@@ -12,18 +12,21 @@ const TrendingSection = async () => {
     .slice(0, 6);
 
   return (
-    <section className="flex flex-col w-full gap-5">
-      <h1 className="text-2xl font-semibold w-fit text-primary">
+    <section className="flex flex-col w-full gap-8 md:gap-5">
+      <h1 className="text-2xl font-semibold mt-4 md:mt-0 w-fit text-primary">
         Trending Books 🔥
       </h1>
       <Suspense fallback={<Spinner loading={true} />}>
-        <div className="flex justify-between px-2 w-full">
+        <div className="flex flex-col md:flex-row md:justify-between px-2 w-full">
           {recentBooks.map((book: Book, index: number) => (
-            <div key={book._id} className="flex gap-1 items-center">
+            <div
+              key={book._id}
+              className="flex flex-col md:flex-row gap-1 items-center"
+            >
               <BookCard book={book} />
               {/* Rendering seperators */}
               {index < recentBooks.length - 1 && (
-                <div className="rounded-full w-1 h-56 self-center bg-current ml-8"></div>
+                <div className="rounded-full h-1 w-56 md:w-1 md:h-56 self-center bg-current md:mb-0 md:ml-8 mt-4 mb-4"></div>
               )}
             </div>
           ))}
