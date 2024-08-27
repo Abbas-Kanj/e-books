@@ -30,12 +30,16 @@ const BookDetails = ({ book }: Props) => {
       <h3 className="text-xl font-semibold">PUBLISHER DESCRIPTION</h3>
       <p className="text-primary text-pretty">
         {description}{" "}
-        <button
-          className="text-base-content text-sm"
-          onClick={() => setShowFullDescription((prevState) => !prevState)}
-        >
-          {showFullDescription ? "Show less" : "Show more"}
-        </button>
+        {book.detailedSummary.length < 320 ? (
+          ""
+        ) : (
+          <button
+            className="text-base-content text-sm"
+            onClick={() => setShowFullDescription((prevState) => !prevState)}
+          >
+            {showFullDescription ? "Show less" : "Show more"}
+          </button>
+        )}
       </p>
 
       <h4 className="text-sm">
