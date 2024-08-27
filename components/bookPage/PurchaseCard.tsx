@@ -2,12 +2,14 @@
 import React from "react";
 import { Book } from "@/types/book";
 import ShareButtons from "../ShareButtons";
+import { useRouter } from "next/navigation";
 
 type Props = {
   book: Book;
 };
 
 const PurchaseCard = ({ book }: Props) => {
+  const router = useRouter();
   return (
     <div className="flex flex-col gap-2">
       <div className="card bg-primary text-primary-content h-fit w-80 shadow-xl">
@@ -20,7 +22,11 @@ const PurchaseCard = ({ book }: Props) => {
             <button className="btn btn-secondary btn-wide font-bold">
               Add to my collection
             </button>
-            <button className="btn btn-primary shadow-none btn-wide font-bold">
+
+            <button
+              onClick={() => router.push(`${book._id}/read`)}
+              className="btn btn-primary shadow-none btn-wide font-bold"
+            >
               Start reading
             </button>
           </div>
