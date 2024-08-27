@@ -110,10 +110,30 @@ async function addBookReview(
   }
 }
 
+// fetch pdfFileName by book id
+async function fetchPdfFileName(id: string) {
+  try {
+    if (!apiDomain) {
+      return null;
+    }
+
+    const res = await fetch(`${apiDomain}/books/${id}/pdf`);
+
+    if (res.status === 404) {
+      return null;
+    }
+    return res.json();
+  } catch (error) {
+    console.error;
+    return null;
+  }
+}
+
 export {
   fetchBooks,
   fetchBookById,
   fetchBooksByAuthor,
   fetchBooksByGenre,
   addBookReview,
+  fetchPdfFileName,
 };
