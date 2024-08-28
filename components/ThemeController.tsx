@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
 
 type Props = {
-  initialTheme: string;
+  initialTheme?: string;
 };
 
 function ThemeController({ initialTheme }: Props) {
-  const [theme, setTheme] = useState<string>(initialTheme);
+  const [theme, setTheme] = useState<string>(initialTheme!);
 
   useEffect(() => {
     // Get the theme from cookies on the client side
