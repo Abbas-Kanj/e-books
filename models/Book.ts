@@ -36,6 +36,12 @@ const BookSchema = new Schema(
       type: String,
       required: [true, "ISBN is required"],
     },
+    detailedSummary: {
+      type: String,
+    },
+    publisherDescription: {
+      type: String,
+    },
     isFree: {
       type: Boolean,
     },
