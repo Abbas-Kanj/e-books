@@ -65,7 +65,7 @@ const SearchBox = () => {
         <input
           role="button"
           type="text"
-          className="grow placeholder:truncate placeholder:text-wrap placeholder:text-xs "
+          className="grow placeholder:truncate placeholder:text-wrap xs:placeholder:text-xs md:placeholder:text-base"
           placeholder="Search book titles, authors..."
           onChange={(e) => {
             setSearchField(e.target.value);
