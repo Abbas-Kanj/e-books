@@ -7,11 +7,14 @@ import { toast } from "react-toastify";
 const BugButton = () => {
   const [message, setMessage] = useState("");
   const [warning, setWarning] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const myReviewModelRef = useRef<HTMLDialogElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsDisabled(true);
+
     if (message === "") {
       setWarning(true);
       return;
@@ -24,10 +27,13 @@ const BugButton = () => {
       if (res.status === 201) {
         setMessage("");
         toast.success("Bug reported, Thank you 😃");
+        myReviewModelRef.current?.close();
       }
     } catch (error) {
       console.error(error);
       toast.error("Error submitting the bug");
+    } finally {
+      setIsDisabled(false);
     }
   };
 
@@ -39,8 +45,8 @@ const BugButton = () => {
         onClick={() => myReviewModelRef.current?.showModal()}
       >
         <MdBugReport
-          className="size-10 p-1 bg-black cursor-pointer border-solid
-         border-black border-2 rounded-full z-50 opacity-50 hover:shadow-drop
+          className="size-10 p-1 bg-secondary cursor-pointer border-solid
+         border-secondary border-2 rounded-full z-50 opacity-50 hover:shadow-drop
           hover:opacity-90"
         />
       </div>
@@ -66,7 +72,11 @@ const BugButton = () => {
                 </h1>
               )}
             </div>
-            <button type="submit" className="btn w-full self-center">
+            <button
+              disabled={isDisabled}
+              type="submit"
+              className="btn w-full self-center"
+            >
               Submit
             </button>
           </form>
