@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import AuthProvider from "@/components/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BugButton from "@/components/BugButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           <Drawer>{children} </Drawer>
           <Footer />
           <ToastContainer />
+          <BugButton />
         </body>
       </html>
     </AuthProvider>
