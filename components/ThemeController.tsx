@@ -1,28 +1,26 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { setCookie, getCookie } from "cookies-next";
 
-type Props = {};
+type Props = {
+  initialTheme?: string;
+};
 
-interface Themes {
-  theme: string;
-  localTheme: string;
-}
-
-function ThemeController({}: Props) {
-  const [theme, setTheme] = useState<string>("luxury");
+function ThemeController({ initialTheme }: Props) {
+  const [theme, setTheme] = useState<string>(initialTheme!);
 
   useEffect(() => {
-    // Access localStorage only on the client side
-    const storedTheme = localStorage.getItem("theme");
+    // Get the theme from cookies on the client side
+    const storedTheme = getCookie("theme");
     if (storedTheme) {
-      setTheme(storedTheme);
+      setTheme(storedTheme as string);
     }
   }, []);
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTheme = e.target.checked ? "autumn" : "luxury";
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
+    setCookie("theme", newTheme);
   };
 
   useEffect(() => {

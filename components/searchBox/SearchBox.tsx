@@ -61,11 +61,11 @@ const SearchBox = () => {
         />
       )}
 
-      <label className="input input-bordered w-72 md:w-96 flex items-center gap-2">
+      <label className="input input-bordered input-xs md:input-md md:w-96 flex items-center">
         <input
           role="button"
           type="text"
-          className="grow w-80"
+          className="grow placeholder:truncate placeholder:text-wrap xs:placeholder:text-xs md:placeholder:text-base"
           placeholder="Search book titles, authors..."
           onChange={(e) => {
             setSearchField(e.target.value);
@@ -77,7 +77,7 @@ const SearchBox = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
           fill="currentColor"
-          className="h-4 w-4 opacity-70"
+          className="h-2 w-2 md:h-4 md:w-4 opacity-70"
         >
           <path
             fillRule="evenodd"

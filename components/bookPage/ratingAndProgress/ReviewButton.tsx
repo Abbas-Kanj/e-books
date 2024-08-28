@@ -29,22 +29,31 @@ const ReviewButton = () => {
   // States
   const [text, setText] = useState("");
   const [rating, setRating] = useState(1);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [providers, setProviders] = useState<Providers>(null);
 
   // Handle review submit function
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsDisabled(true);
     if (text === "") {
       toast.error("Review Cannot be empty");
       return;
     }
-    const res = await addBookReview(text, rating, id);
+    try {
+      const res = await addBookReview(text, rating, id);
 
-    if (res.status === 201) {
-      toast.success(res.message);
-      myReviewModelRef.current?.close();
-    } else if (res === null) {
-      toast.error("Error adding review");
+      if (res.status === 201) {
+        toast.success(res.message);
+        myReviewModelRef.current?.close();
+        setText("");
+        setRating(1);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error submitting review...");
+    } finally {
+      setIsDisabled(false);
     }
   };
 
@@ -90,10 +99,15 @@ const ReviewButton = () => {
                 className="textarea textarea-bordered textarea-md min-h-44 max-h-44 w-full"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
+                required
               ></textarea>
               <RateButton setRating={setRating} />
             </div>
-            <button type="submit" className="btn self-end">
+            <button
+              disabled={isDisabled}
+              type="submit"
+              className="btn self-end"
+            >
               Submit
             </button>
           </form>

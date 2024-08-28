@@ -13,7 +13,7 @@ type Props = {
 const BookCard = ({ book }: Props) => {
   const router = useRouter();
 
-  const { image, title, _id } = book;
+  const { imageUrl, title, _id } = book;
 
   return (
     <Suspense fallback={<Spinner loading={true} />}>
@@ -21,7 +21,7 @@ const BookCard = ({ book }: Props) => {
         <BookmarkButton book={book} />
         <div className="aspect-[2/3] relative w-full">
           <Image
-            src={image}
+            src={imageUrl}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority={true}

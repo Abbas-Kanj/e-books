@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import AuthProvider from "@/components/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BugButton from "@/components/BugButton";
+import { getCookie } from "cookies-next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,13 +22,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const theme = getCookie("theme") || "luxury";
+
   return (
     <AuthProvider>
-      <html lang="en" data-theme="luxury">
+      <html lang="en" data-theme={theme}>
         <body className={inter.className}>
           <Drawer>{children} </Drawer>
           <Footer />
           <ToastContainer />
+          <BugButton />
         </body>
       </html>
     </AuthProvider>

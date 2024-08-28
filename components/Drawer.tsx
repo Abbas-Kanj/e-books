@@ -135,28 +135,32 @@ function Drawer({ children }: Props) {
             </Link>
           </div>
           {/* Online friends*/}
-          <div className="avatar-group flex-col -space-y-6 rtl:space-y-reverse">
-            <div className="avatar">
-              <div className="w-12">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          {!session ? (
+            <div></div>
+          ) : (
+            <div className="avatar-group flex-col -space-y-6 rtl:space-y-reverse">
+              <div className="avatar">
+                <div className="w-10">
+                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                </div>
+              </div>
+              <div className="avatar">
+                <div className="w-10">
+                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                </div>
+              </div>
+              <div className="avatar">
+                <div className="w-10">
+                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                </div>
+              </div>
+              <div className="avatar">
+                <div className="w-10">
+                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                </div>
               </div>
             </div>
-            <div className="avatar">
-              <div className="w-12">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-              </div>
-            </div>
-            <div className="avatar">
-              <div className="w-12">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-              </div>
-            </div>
-            <div className="avatar">
-              <div className="w-12">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

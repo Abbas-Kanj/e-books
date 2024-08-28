@@ -23,7 +23,7 @@ export const POST = async (req: NextRequest) => {
         { title: { $in: regExPattern } },
         { author: { $in: regExPattern } },
       ],
-    }).select("_id image author title");
+    }).select("_id imageUrl author title");
 
     if (results.length === 0) {
       return new Response(

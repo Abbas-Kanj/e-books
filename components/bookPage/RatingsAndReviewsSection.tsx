@@ -11,8 +11,8 @@ type Props = {
 
 const RatingsAndReviewsSection = ({ book }: Props) => {
   return (
-    <section className="container p-4">
-      <h1 className="text-2xl font-semibold mb-4">
+    <section className="container p-4 mt-6 w-full">
+      <h1 className="text-2xl text-primary font-semibold mb-4">
         Ratings & Reviews{" "}
         <span className="text-lg ml-48">
           Avg. Rating: {Math.round(book.averageRating)}

@@ -11,7 +11,7 @@ export const GET = async (
 
     const reviews = await Book.findById(id).select("reviews -_id").populate({
       path: "reviews.userId",
-      select: "username image -_id", // exclude the id
+      select: "username imageUrl -_id", // exclude the id
     });
 
     if (reviews.length === 0) {
