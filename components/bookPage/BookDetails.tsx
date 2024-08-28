@@ -9,7 +9,7 @@ type Props = {
 const BookDetails = ({ book }: Props) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   let description = book.detailedSummary;
-  if (!showFullDescription) {
+  if (!showFullDescription && book.detailedSummary.length > 320) {
     description = description.substring(0, 320) + "...";
   }
 
@@ -30,9 +30,7 @@ const BookDetails = ({ book }: Props) => {
       <h3 className="text-xl font-semibold">PUBLISHER DESCRIPTION</h3>
       <p className="text-primary text-pretty">
         {description}{" "}
-        {book.detailedSummary.length < 320 ? (
-          ""
-        ) : (
+        {book.detailedSummary.length > 320 && (
           <button
             className="text-base-content text-sm"
             onClick={() => setShowFullDescription((prevState) => !prevState)}
