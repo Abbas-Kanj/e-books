@@ -1,13 +1,24 @@
 "use client";
 import { useEffect, useState } from "react";
-import { pdfjs, Document, Page } from "react-pdf";
+import { pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import Spinner from "./Spinner";
 import { apiDomain } from "@/utils/requests";
 import { useRouter } from "next/navigation";
-
 import type { PDFDocumentProxy } from "pdfjs-dist";
+import dynamic from "next/dynamic";
+
+const Document = dynamic(
+  () => import("react-pdf").then((mod) => mod.Document),
+  {
+    ssr: false,
+  }
+);
+
+const Page = dynamic(() => import("react-pdf").then((mod) => mod.Page), {
+  ssr: false,
+});
 
 const options = {
   cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
