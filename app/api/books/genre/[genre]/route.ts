@@ -11,7 +11,7 @@ export const GET = async (
 
     const booksByGenre = await Book.find({ genre: genre })
       .limit(5)
-      .select("_id image")
+      .select("_id imageUrl")
       .lean();
 
     if (booksByGenre.length === 0) {
