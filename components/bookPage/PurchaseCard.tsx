@@ -11,6 +11,8 @@ import {
 } from "next-auth/react";
 import { BuiltInProviderType } from "next-auth/providers/index";
 import RegisterModal from "../RegisterModal";
+import { downloadPdf } from "@/utils/downloadPdf";
+import { toast } from "react-toastify";
 
 type Props = {
   book: Book;
@@ -23,10 +25,12 @@ type Providers = Record<
 
 const PurchaseCard = ({ book }: Props) => {
   const { data: session } = useSession();
+  const [isDownloading, setIsDownloading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const [providers, setProviders] = useState<Providers>(null);
   const myRegisterModelRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
-  const { isFree, price } = { ...book };
+  const { isFree, price, pdfUrl } = { ...book };
 
   // Handle user signin
   useEffect(() => {
@@ -36,6 +40,12 @@ const PurchaseCard = ({ book }: Props) => {
     };
     setAuthProviders();
   }, []);
+
+  useEffect(() => {
+    if (error) {
+      toast.error("Error downloading...");
+    }
+  }, [error]);
 
   return (
     <div className="flex flex-col gap-2 h-[568px]">
@@ -57,12 +67,31 @@ const PurchaseCard = ({ book }: Props) => {
               </button>
 
               <button
+                className="btn btn-primary border-secondary border-1 border-solid btn-wide font-bold"
+                onClick={() =>
+                  session == null
+                    ? myRegisterModelRef.current?.showModal()
+                    : downloadPdf({ pdfUrl, setIsDownloading, setError })
+                }
+                disabled={isDownloading}
+              >
+                {isDownloading ? (
+                  <>
+                    <h1>Downloading...</h1>
+                    <span className="loading loading-spinner"></span>
+                  </>
+                ) : (
+                  <h1>Download book</h1>
+                )}
+              </button>
+
+              <button
                 onClick={() =>
                   session == null
                     ? myRegisterModelRef.current?.showModal()
                     : router.push(`${book._id}/read`)
                 }
-                className="btn btn-primary shadow-none btn-wide font-bold"
+                className="btn btn-primary border-secondary border-1 border-solid btn-wide font-bold"
               >
                 Start reading
               </button>
