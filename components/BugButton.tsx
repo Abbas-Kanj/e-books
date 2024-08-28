@@ -10,6 +10,27 @@ const BugButton = () => {
 
   const myReviewModelRef = useRef<HTMLDialogElement>(null);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (message === "") {
+      setWarning(true);
+      return;
+    }
+    try {
+      const res = await fetch(`${apiDomain}/reports`, {
+        method: "POST",
+        body: JSON.stringify(message),
+      });
+      if (res.status === 201) {
+        setMessage("");
+        toast.success("Bug reported, Thank you 😃");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error submitting the bug");
+    }
+  };
+
   return (
     <>
       <div
