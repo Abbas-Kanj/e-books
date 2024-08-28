@@ -1,30 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
-import { pdfjs } from "react-pdf";
+import { pdfjs, Page, Document } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import { apiDomain, fetchPdfFileName } from "@/utils/requests";
 import { useParams, useRouter } from "next/navigation";
 import type { PDFDocumentProxy } from "pdfjs-dist";
-import dynamic from "next/dynamic";
 import Spinner from "@/components/Spinner";
-
-const Document = dynamic(
-  () => import("react-pdf").then((mod) => mod.Document),
-  {
-    ssr: false,
-  }
-);
-
-const Page = dynamic(() => import("react-pdf").then((mod) => mod.Page), {
-  ssr: false,
-});
 
 const options = {
   cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
 };
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const ReadBookPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -39,7 +27,9 @@ const ReadBookPage = () => {
       const pdfFileName = await fetchPdfFileName(id);
       try {
         const response = await fetch(
-          `${apiDomain}/download?fileName=${encodeURIComponent(pdfFileName)}`
+          `${apiDomain}/download?fileName=${encodeURIComponent(
+            pdfFileName.pdfUrl
+          )}`
         );
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
