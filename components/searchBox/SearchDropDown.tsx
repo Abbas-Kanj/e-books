@@ -5,7 +5,7 @@ import bookCover from "@/assets/Images/bookCover.jpg";
 import { useRouter } from "next/navigation";
 
 interface searchResultItem {
-  image: string;
+  imageUrl: string;
   author: string;
   title: string;
   _id: string;
@@ -60,7 +60,7 @@ const SearchDropDown = ({
                 className="flex gap-10"
               >
                 <Image
-                  src={result.image || bookCover}
+                  src={result.imageUrl || bookCover}
                   alt="book cover"
                   width={40}
                   height={40}
