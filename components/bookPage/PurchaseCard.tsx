@@ -110,6 +110,7 @@ const PurchaseCard = ({ book }: Props) => {
                   session == null && myRegisterModelRef.current?.showModal()
                 }
                 className="btn btn-secondary btn-wide"
+                disabled
               >
                 Add to cart
               </button>
