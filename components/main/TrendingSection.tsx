@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import { fetchBooks } from "@/utils/requests";
 import { Book } from "@/types/book";
-import Spinner from "../Spinner";
 import BookCard from "../BookCard";
+import Spinner from "../Spinner";
 
 const TrendingSection = async () => {
   const books = await fetchBooks();
@@ -17,9 +17,13 @@ const TrendingSection = async () => {
         Trending Books 🔥
       </h1>
       <Suspense fallback={<Spinner loading={true} />}>
-        <div className="flex flex-col md:flex-row md:justify-between px-2 w-full">
+        <div
+          data-testid="trending-books"
+          className="flex flex-col md:flex-row md:justify-between px-2 w-full"
+        >
           {recentBooks.map((book: Book, index: number) => (
             <div
+              data-testid="trending-book"
               key={book._id}
               className="flex flex-col md:flex-row gap-1 items-center"
             >

@@ -1,4 +1,4 @@
-import TrendingSection from "@/components/bookPage/TrendingSection";
+import TrendingSection from "@/components/main/TrendingSection";
 import CategoriesSection from "@/components/main/CategoriesSection";
 import ContinueReadingSection from "@/components/main/ContinueReadingSection";
 
