@@ -61,11 +61,13 @@ const BookmarkButton = ({ book }: Props) => {
 
   return !isBookmarked ? (
     <MdBookmarkAdd
+      data-testid="bookmark-add"
       className="absolute top-0 left-0 size-7 z-10 bg-base-100 rounded-btn p-1 cursor-pointer hover:opacity-60"
       onClick={handleClick}
     />
   ) : (
     <MdBookmarkRemove
+      data-testid="bookmark-remove"
       className="absolute top-0 left-0 size-7 z-10 bg-base-100 rounded-btn p-1 cursor-pointer hover:opacity-60"
       onClick={handleClick}
     />
